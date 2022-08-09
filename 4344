@@ -1,52 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <cmath>
+
 using namespace std;
-double cal_avr(vector<int>i_v, int n);
 
 int main()
 {
-    int n, temp = 0;
-    double avr_temp, n2, num_temp,result = 0;
-    vector<int> i_v;
+    int n1, n2, num;
+    int avg;
     
-    cin >> n;
-    for (int i = 0; i< n; i++)
+    int score[1000] = { 0 };
+    double result;
+    
+    cin >> n1;
+    for(int i = 0; i< n1; i++)
     {
-        cin >> n2;
-        for (int i = 0; i< n2; i++)
-        {
-            cin >> temp;
-            i_v.push_back(temp); 
-        }
-        avr_temp = cal_avr(i_v, n2);
-        for (int i = 0; i< n2; i++)
-        {
-            if(avr_temp< i_v[i])
-                num_temp++;
-        }
-        
-        result = num_temp / n2 * 100;
-        result *= 1000;
-        result = round(result);
-        result /= 1000;
-        cout.fixed;
-        cout.precision(5);
-        cout<<result<<"%"<<endl;
-        num_temp = 0; avr_temp = 0;
-        
-        i_v.clear();
+       avg = 0;
+       num = 0;
+       cin >> n2;
+       
+       for(int j = 0; j<n2; j++)
+       {
+           cin >> score[j];
+           avg  = avg + score[j];
+       }
+       avg = avg / n2;
+       
+       for(int j = 0; j < n2; j++)
+       {
+            if(score[j]>avg)
+                num++;
+       }
+       result = (double)num/n2*100;
+       
+       cout<<fixed;
+       cout.precision(3);
+       cout<<result << "%" << endl;
+       
+       
     }
-    return 0;
-}
-
-double cal_avr(vector<int>i_v, int n)
-{
-    int sum=0;
-    for(int i =0; i< n; i++)
-    {
-        sum += i_v[i];
-    }
-    sum = sum/n;
-    return sum;
+    return   0;
 }
