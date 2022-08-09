@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+double cal_avr(vector<int>i_v, int n);
+
+int main()
+{
+    int n, temp = 0;
+    double avr_temp, n2, num_temp,result = 0;
+    vector<int> i_v;
+    
+    cin >> n;
+    for (int i = 0; i< n; i++)
+    {
+        cin >> n2;
+        for (int i = 0; i< n2; i++)
+        {
+            cin >> temp;
+            i_v.push_back(temp); 
+        }
+        avr_temp = cal_avr(i_v, n2);
+        for (int i = 0; i< n2; i++)
+        {
+            if(avr_temp< i_v[i])
+                num_temp++;
+        }
+        
+        result = num_temp / n2 * 100;
+        result *= 1000;
+        result = round(result);
+        result /= 1000;
+        cout.fixed;
+        cout.precision(5);
+        cout<<result<<"%"<<endl;
+        num_temp = 0; avr_temp = 0;
+        
+        i_v.clear();
+    }
+    return 0;
+}
+
+double cal_avr(vector<int>i_v, int n)
+{
+    int sum=0;
+    for(int i =0; i< n; i++)
+    {
+        sum += i_v[i];
+    }
+    sum = sum/n;
+    return sum;
+}
